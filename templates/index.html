@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Repository Viewer</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .repo-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .repo-list li {
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .repo-list li a {
+            font-weight: bold;
+            text-decoration: none;
+            color: #0366d6;
+        }
+        .repo-list li p {
+            margin: 5px 0;
+        }
+        .repo-list li span {
+            font-size: 0.9em;
+            color: #586069;
+        }
+    </style>
+</head>
+<body>
+    <h1>GitHub Repository Viewer</h1>
+
+    <h2>Top 100 Most Starred Repositories</h2>
+    <ul class="repo-list">
+        {% for repo in starred_repos %}
+        <li>
+            <a href="{{ repo.html_url }}" target="_blank">{{ repo.name }}</a>
+            {% if repo.description %}
+            <p>{{ repo.description }}</p>
+            {% endif %}
+            <span>Stars: {{ repo.stargazers_count }}</span> |
+            <span>Last updated: {{ repo.updated_at }}</span>
+        </li>
+        {% else %}
+        <li>No starred repositories found.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Top 100 Latest Updated Repositories</h2>
+    <ul class="repo-list">
+        {% for repo in latest_repos %}
+        <li>
+            <a href="{{ repo.html_url }}" target="_blank">{{ repo.name }}</a>
+            {% if repo.description %}
+            <p>{{ repo.description }}</p>
+            {% endif %}
+            <span>Stars: {{ repo.stargazers_count }}</span> |
+            <span>Last updated: {{ repo.updated_at }}</span>
+        </li>
+        {% else %}
+        <li>No latest updated repositories found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
