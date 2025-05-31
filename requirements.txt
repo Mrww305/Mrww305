@@ -1,0 +1,2 @@
+# Placeholder for Google API - specific library might be needed
+google-api-python-client
